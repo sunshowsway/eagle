@@ -1,0 +1,7 @@
+.DS_Store
+/.idea
+
+/eagle/settings.py
+
+scrapy-project/*
+!/scrapy-project/readme.md
