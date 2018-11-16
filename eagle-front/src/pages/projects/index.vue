@@ -14,7 +14,7 @@
                                 :data="projectData"
                                 :loading="loading"
                                 style="width: 100%"
-                                max-height="350">
+                                height="250">
                             <el-table-column
                                     prop="projects"
                                     label="项目名称">
@@ -71,7 +71,7 @@
                             <el-table
                                     :data="versionData"
                                     style="width: 100%"
-                                    max-height="350">
+                                    height="250">
                                 <el-table-column
                                         prop="version"
                                         label="Version">
@@ -390,6 +390,10 @@
             },
 
             deploy(row) {
+                if (!this.selectedServer) {
+                    this.$message({message: '服务器未选定!', type: 'error'});
+                    return;
+                }
                 this.$confirm(`将项目${row.name}部署至${this.selectedServer}, 是否继续?`, '提示', {
                     confirmButtonText: '部署',
                     cancelButtonText: '取消',

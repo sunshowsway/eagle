@@ -27,7 +27,7 @@
 
                         <el-table
                                 :data="jobData"
-                                height="300"
+                                max-height="500"
                                 :default-sort="{prop: 'startTime', order: 'descending'}"
                                 style="width: 100%">
                             <el-table-column

@@ -4,15 +4,17 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse
-from main.models import Book, Server
+from main.models import Server, Jobs, News
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Sum
 
 import requests
 import json
 import socket
 import os
 import re
+import time
 
 
 # Create your views here.
@@ -32,7 +34,7 @@ def add_server(request):
         server.save()
         response['msg'] = 'success'
         response['error_num'] = 0
-    except Exception, e:
+    except Exception as e:
         response['msg'] = str(e)
         response['error_num'] = 1
 
@@ -52,7 +54,7 @@ def delete_server(request):
         server.delete()
         response['msg'] = 'success'
         response['error_num'] = 0
-    except Exception, e:
+    except Exception as e:
         response['msg'] = str(e)
         response['error_num'] = 1
 
@@ -78,7 +80,7 @@ def edit_server(request):
         server.save()
         response['msg'] = 'success'
         response['error_num'] = 0
-    except Exception, e:
+    except Exception as e:
         response['msg'] = str(e)
         response['error_num'] = 1
 
@@ -94,7 +96,7 @@ def show_servers(request):
         response['list'] = json.loads(serializers.serialize("json", servers))
         response['msg'] = 'success'
         response['error_num'] = 0
-    except Exception, e:
+    except Exception as e:
         response['msg'] = str(e)
         response['error_num'] = 1
 
@@ -119,13 +121,14 @@ def test_connection(request):
         response['msg'] = 'success'
         response['connect_status'] = result
         response['error_num'] = 0
-    except Exception, e:
+    except Exception as e:
         response['msg'] = str(e)
         response['error_num'] = 1
 
     return JsonResponse(response)
 
 
+# this method will return the projects list under rootPath.
 @require_http_methods(["GET"])
 def get_project_path(request):
     response = {}
@@ -145,13 +148,16 @@ def get_project_path(request):
         response['paths'] = path_dict
         response['msg'] = 'success'
         response['error_num'] = 0
-    except Exception, e:
+    except Exception as e:
         response['msg'] = str(e)
         response['error_num'] = 1
 
     return JsonResponse(response)
 
 
+# this method will do deploy action.
+# deploy the project to the target remote url with certain version(optional).
+# todo add optional version argument.
 @require_http_methods(["POST"])
 @csrf_exempt
 def do_deploy_project(request):
@@ -160,7 +166,7 @@ def do_deploy_project(request):
         path = request.POST.get('path', '')
         project = request.POST.get('project', '')
         target = request.POST.get('target', '')
-        version = request.POST.get('version', '')
+        # version = request.POST.get('version', '')
 
         target_url = target + '/addversion.json'
 
@@ -183,11 +189,13 @@ def do_deploy_project(request):
 
         d_output = os.popen('cd ' + path + ';'
                                            'scrapyd-deploy ' + target + ';').read()
+
         d_output = d_output.replace("\"", "")
         d_output = d_output.replace("\n", "")
+        print('=============>' + d_output)
 
         pattern = re.compile(
-            '^{node_name:\s([\d]{1,3}.[\d]{1,3}.[\d]{1,3}.[\d]{1,3}),\sstatus:\s([\w]+),\sproject:\s([\w]+),\sversion:\s([\d]+),\sspiders:\s([\d]+)}$')
+            '^{node_name:\s([\w\d-]+),\sstatus:\s([\w]+),\sproject:\s([\w]+),\sversion:\s([\d]+),\sspiders:\s([\d]+)}$')
         match = pattern.match(d_output)
 
         deploy_result = {}
@@ -201,7 +209,39 @@ def do_deploy_project(request):
         response['msg'] = 'success'
         response['deploy_result'] = deploy_result
         response['error_num'] = 0
-    except Exception, e:
+    except Exception as e:
+        response['msg'] = str(e)
+        response['error_num'] = 1
+
+    return JsonResponse(response)
+
+
+# this method will connect to mysql database, fetching 'time' and 'size'.
+# todo complete this function.
+@require_http_methods(["POST"])
+@csrf_exempt
+def get_download_size(request):
+    response = {}
+    try:
+        ip_host = request.POST.get('ip', '')
+        frequency = request.POST.get('frequency', '1')
+
+        if ip_host is '':
+            raise Exception('ip is required.')
+
+        ip = ip_host.split(':', 1)[0]
+        now = time.time()
+
+        response['size'] = News.objects.filter(
+            ip=ip,
+            time__range=[now - int(frequency), now]
+        ).aggregate(Sum("size"))
+
+        response['time'] = now
+        response['msg'] = 'success'
+        response['error_num'] = 0
+
+    except Exception as e:
         response['msg'] = str(e)
         response['error_num'] = 1
 
