@@ -1,7 +1,5 @@
 import request from '@/plugin/axios'
 
-let base_url = 'http://192.168.10.13:6800';
-
 export function DaemonStatus(data) {
     return request({
         url: 'http://' + data.server + '/daemonstatus.json',
