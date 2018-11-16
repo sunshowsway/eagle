@@ -41,3 +41,11 @@ export function TestConnection(data) {
         data
     })
 }
+
+export function GetDownloadSize(data) {
+    return request({
+        url: base_url + 'get_download_size',
+        method: 'post',
+        data
+    })
+}

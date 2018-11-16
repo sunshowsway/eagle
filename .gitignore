@@ -5,3 +5,6 @@
 
 scrapy-project/*
 !/scrapy-project/readme.md
+
+migrations/*
+!/migrations/__init__.py

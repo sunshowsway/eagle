@@ -10,4 +10,5 @@ urlpatterns = [
 
     url(r'get_project_path$', views.get_project_path),
     url(r'do_deploy_project$', views.do_deploy_project),
+    url(r'get_download_size$', views.get_download_size),
 ]
