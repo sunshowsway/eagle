@@ -224,21 +224,25 @@
                 this.dialogVisible = true;
             },
 
-            //todo scheduler a spider run (also known as a job), then return the job id.
+            // scheduler a spider run (also known as a job), then return the job id.
             scheduler() {
-                Schedule({
-                    server: this.selectedServer,
-                    project: this.schedulerData.project,
-                    spider: this.schedulerData.spider
-                }).then(res => {
-                    if (res.status === 'ok') {
-                        this.$message({message: `Job -> [${res.jobid}] scheduled.`, type: 'success'});
-                    } else {
-                        this.$message({message: `${res.message}`, type: 'error'});
-                    }
-                }).finally(() => {
-                    this.dialogVisible = false;
-                })
+                // Schedule({
+                //     server: this.selectedServer,
+                //     project: this.schedulerData.project,
+                //     spider: this.schedulerData.spider
+                // }).then(res => {
+                //     if (res.status === 'ok') {
+                //         this.$message({message: `Job -> [${res.jobid}] scheduled.`, type: 'success'});
+                //     } else {
+                //         this.$message({message: `${res.message}`, type: 'error'});
+                //     }
+                // }).finally(() => {
+                //     this.dialogVisible = false;
+                // })
+
+                // prototype todo delete.
+                this.$message({message: `Job -> [3239412jrdoq2309q23013249081jdsq2] scheduled.`, type: 'success'});
+                this.dialogVisible = false;
             },
 
             handleSelect(command) {
@@ -247,21 +251,35 @@
             },
 
             getSpiderList() {
-                SpiderList({
-                    server: this.selectedServer,
-                    project: this.selectedProject
-                }).then(res => {
-                    this.spiderData = [];
-                    for (const i in res.spiders) {
-                        this.spiderData.push({
-                            index: i,
-                            project: this.selectedProject,
-                            spiderName: res.spiders[i]
-                        })
+                // SpiderList({
+                //     server: this.selectedServer,
+                //     project: this.selectedProject
+                // }).then(res => {
+                //     this.spiderData = [];
+                //     for (const i in res.spiders) {
+                //         this.spiderData.push({
+                //             index: i,
+                //             project: this.selectedProject,
+                //             spiderName: res.spiders[i]
+                //         })
+                //     }
+                // }).finally(() => {
+                //     this.loading = false;
+                // })
+
+                // prototype todo delete.
+                this.spiderData = [];
+                this.spiderData.push({
+                        index: 1,
+                        project: this.selectedProject,
+                        spiderName: 'spider name #1'
+                    },
+                    {
+                        index: 2,
+                        project: this.selectedProject,
+                        spiderName: 'spider name #2'
                     }
-                }).finally(() => {
-                    this.loading = false;
-                })
+                )
             }
         },
 
@@ -287,13 +305,22 @@
             }
         },
         mounted() {
-            ProjectList({
-                server: this.selectedServer
-            }).then(res => {
-                for (const i in res.projects) {
-                    this.projects.push({name: res.projects[i]})
+            // ProjectList({
+            //     server: this.selectedServer
+            // }).then(res => {
+            //     for (const i in res.projects) {
+            //         this.projects.push({name: res.projects[i]})
+            //     }
+            // });
+
+            // prototype todo delete.
+            this.projects.push({
+                    name: 'project name #1',
+                },
+                {
+                    name: 'project name #2'
                 }
-            });
+            );
 
             if (this.$route.params.project_name) {
                 this.selectedProject = this.$route.params.project_name;

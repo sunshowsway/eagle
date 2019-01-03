@@ -1,20 +1,17 @@
 <template>
-    <div
-            class="d2-layout-header-aside-group"
-            :style="styleLayoutMainGroup"
-            :class="{grayMode: grayActive}">
+    <div class="d2-layout-header-aside-group"
+         :style="styleLayoutMainGroup"
+         :class="{grayMode: grayActive}">
         <!-- 半透明遮罩 -->
         <div class="d2-layout-header-aside-mask"></div>
         <!-- 主体内容 -->
         <div class="d2-layout-header-aside-content" flex="dir:top">
             <!-- 顶栏 -->
-            <div
-                    class="d2-theme-header"
-                    :style="{
-          opacity: this.searchActive ? 0.5 : 1
-        }"
-                    flex-box="0"
-                    flex>
+            <div class="d2-theme-header"
+                 :style="{opacity: this.searchActive ? 0.5 : 1}"
+                 flex-box="0"
+                 style="background-color: rgb(255, 255, 255);"
+                 flex>
                 <div class="logo-group" :style="{width: asideCollapse ? asideWidthCollapse : asideWidth}" flex-box="0">
                     <img v-if="asideCollapse"
                          :src="`${$baseUrl}image/theme/${themeActiveSetting.name}/logo/icon-only.png`">
@@ -25,11 +22,12 @@
                 </div>
                 <!--<d2-menu-header flex-box="1"/>-->
                 <!-- 顶栏右侧 -->
+                <div flex-box="1"></div>
                 <div class="d2-header-right" flex-box="0">
                     <!-- 如果你只想在开发环境显示这个按钮请添加 v-if="$env === 'development'" -->
                     <d2-header-search @click="handleSearchClick"/>
                     <d2-header-error-log v-if="$env === 'development'"/>
-                    <d2-header-fullscreen/>
+                    <!--<d2-header-fullscreen/>-->
                     <!--<d2-header-theme/>-->
                     <!--<d2-header-size/>-->
                     <d2-header-user/>
@@ -38,33 +36,30 @@
             <!-- 下面 主体 -->
             <div class="d2-theme-container" flex-box="1" flex>
                 <!-- 主体 侧边栏 -->
-                <div
-                        flex-box="0"
-                        ref="aside"
-                        class="d2-theme-container-aside"
-                        :style="{
-            width: asideCollapse ? asideWidthCollapse : asideWidth,
-            opacity: this.searchActive ? 0.5 : 1
-          }">
+                <el-card flex-box="0"
+                         ref="aside"
+                         shadow="never"
+                         class="d2-theme-container-aside"
+                         style="margin: 20px 0"
+                         :style="{width: asideCollapse ? asideWidthCollapse : asideWidth, opacity: this.searchActive ? 0.5 : 1}">
                     <d2-menu-side/>
-                </div>
+                </el-card>
                 <!-- 主体 -->
+
                 <div class="d2-theme-container-main" flex-box="1" flex>
                     <!-- 搜索 -->
                     <transition name="fade-scale">
                         <div v-show="searchActive" class="d2-theme-container-main-layer" flex="dir:top">
-                            <d2-panel-search
-                                    ref="panelSearch"
-                                    @close="searchPanelClose"/>
+                            <d2-panel-search ref="panelSearch" @close="searchPanelClose"/>
                         </div>
                     </transition>
                     <!-- 内容 -->
                     <transition name="fade-scale">
                         <div v-show="!searchActive" class="d2-theme-container-main-layer" flex="dir:top">
                             <!-- tab -->
-                            <div class="d2-theme-container-main-header" flex-box="0">
-                                <d2-tabs/>
-                            </div>
+                            <!--<div class="d2-theme-container-main-header" flex-box="0">-->
+                            <!--<d2-tabs/>-->
+                            <!--</div>-->
                             <!-- 页面 -->
                             <div class="d2-theme-container-main-body" flex-box="1">
                                 <transition :name="transitionActive ? 'fade-transverse' : ''">

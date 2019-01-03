@@ -1,6 +1,6 @@
 import layoutHeaderAside from '@/layout/header-aside'
 
-const meta = {requiresAuth: false};
+const meta = {requiresAuth: true};
 
 const SpiderInProject = {
     template: `<div>Spider {{ $route.params.project_id }}</div>`
@@ -25,6 +25,14 @@ export default {
             component: () => import('@/pages/spider/jobs'),
             meta: {meta, title: '任务列表'}
         },
+
+        {
+            path: 'cookies',
+            name: `${pre}cookies`,
+            component: () => import('@/pages/spider/cookies'),
+            meta: {meta, title: 'Cookie池管理'}
+        },
+
         {
             path: 'proxy',
             name: `${pre}proxy`,

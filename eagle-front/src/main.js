@@ -15,6 +15,7 @@ import D2Crud from '@d2-projects/d2-crud';
 
 // 图表插件
 import VCharts from 'v-charts'
+import echarts from 'echarts'
 
 // 菜单和路由设置
 import router from './router';
@@ -22,10 +23,30 @@ import menuHeader from '@/menu/header';
 import menuAside from '@/menu/aside';
 import {frameInRoutes} from '@/router/routes';
 
+import qs from 'qs'
+
+// highlight 插件
+// import VueHighlightJS from 'vue-highlightjs';
+
 // 核心插件
 Vue.use(d2Admin);
 Vue.use(D2Crud);
 Vue.use(VCharts);
+Vue.use(echarts);
+
+// 非核心插件
+// Vue.use(VueHighlightJS);
+
+Vue.prototype.talog = function (tag, log) {
+    if (navigator.userAgent.indexOf("Chrome") >= 0) {
+        console.log("%c " + tag + " %c " + log + " %c",
+            "background:#35495e; padding: 1px; border-radius: 3px 0 0 3px; color: #fff",
+            "background:#3c8dbc; padding: 1px; border-radius: 0 3px 3px 0; color: #fff",
+            "background:transparent");
+    } else {
+        console.log("[" + tag + "|" + log + "]");
+    }
+};
 
 new Vue({
     router,
@@ -51,5 +72,5 @@ new Vue({
         this.$store.commit('d2admin/ua/get');
         // 初始化全屏监听
         this.$store.dispatch('d2admin/fullscreen/listen');
-    }
+    },
 }).$mount('#app');

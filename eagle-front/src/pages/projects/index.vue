@@ -4,7 +4,7 @@
             <!--projects list-->
             <el-col :span="14">
                 <div class="grid-content bg-purple-light">
-                    <el-card class="box-card">
+                    <el-card class="box-card" shadow="never">
                         <div slot="header" class="clearfix">
                             <span>项目列表</span><br>
                             <span style="font-size: 12px;" v-bind="selectedServer"><em>当前选定的服务器: {{selectedServer?selectedServer:'未指定'}}</em></span>
@@ -43,7 +43,7 @@
             <!--version tables-->
             <el-col :span="10">
                 <div class="grid-content">
-                    <el-card class="box-card">
+                    <el-card class="box-card" shadow="never">
                         <div slot="header" class="clearfix">
                             <span style="display: inline-block; padding-top: 8px;"
                                   v-if="selectedProject">{{selectedProject}}</span>&nbsp;
@@ -101,50 +101,140 @@
         </el-row>
 
         <!--打包部署项目，未完成-->
+
+            <div style="padding-left: 15px;margin-bottom: 20px;">
+                <p style="margin-bottom: 10px;">部署项目</p>
+                <span style="font-size: 12px; display: block;">
+                    部署项目至目标服务器：<em>{{selectedServer}}</em>，请将项目拷贝到指定目录下: <em>/eagle/{{rootPath}}</em>
+                </span>
+            </div>
+
         <el-row :gutter="20" style="display: block;">
-            <el-col :span="24">
-                <el-card class="box-card">
-                    <div slot="header" class="clearfix custom-card-header">
-                        <span style="display: inline-block; padding-top: 8px;">部署项目</span>
-                        <el-button
-                                icon="el-icon-refresh"
-                                type="text"
-                                style="float:right; color: #409EFF; font-size: 12px; cursor: pointer;"
-                                v-on:click="getDeployList()">
-                            刷新
-                        </el-button>
+
+            <el-col span="6">
+                <el-card :body-style="{padding:'0px'}" shadow="hover">
+                    <img src="./image/news_sina.svg" alt="sina news logo" class="cu-project-cover">
+                    <div style="border-top: 1px solid #ebebeb; padding: 14px;">
+                        <span class="cu-one-line">新浪教育新闻爬取项目</span><br>
+                        <small class="cu-one-line">https://edu.sina.cn/</small>
+                        <div class="bottom clearfix">
+                            <div style="flex: 1;"></div>
+                            <el-button round type="primary" class="button" size="mini" v-on:click="deploy('sina_news')"
+                                       style="margin-top: 16px; float: right; padding: 5px 8px;">部署
+                            </el-button>
+                        </div>
                     </div>
-
-                    <el-table
-                            :data="projects"
-                            style="width: 100%"
-                            max-height="350">
-                        <el-table-column
-                                prop="name"
-                                label="项目名称">
-                        </el-table-column>
-
-                        <el-table-column
-                                prop="path"
-                                label="路径">
-                        </el-table-column>
-
-                        <el-table-column
-                                fixed="right"
-                                label="操作"
-                                width="100">
-                            <template slot-scope="scope">
-                                <el-button v-on:click="deploy(scope.row)" type="text" size="small">部署
-                                </el-button>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-
-                    <span style="font-size: 12px; display: block; padding-top: 15px;" v-bind="selectedServer">
-                        部署项目至目标服务器：<em>{{selectedServer}}</em>，请将项目拷贝到指定目录下: <em>/eagle/{{rootPath}}</em>
-                    </span>
                 </el-card>
             </el-col>
+
+            <el-col span="6">
+                <el-card :body-style="{padding:'0px'}" shadow="hover">
+                    <img src="./image/douban.svg" alt="sina news logo" class="cu-project-cover">
+                    <div style="border-top: 1px solid #ebebeb; padding: 14px;">
+                        <span class="cu-one-line">豆瓣小组爬取项目</span><br>
+                        <small class="cu-one-line">https://www.douban.com/group/search?cat=1019&q=教育</small>
+                        <div class="bottom clearfix">
+                            <div style="flex: 1;"></div>
+                            <el-button round type="primary" class="button" size="mini"
+                                       style="margin-top: 16px; float: right; padding: 5px 8px;">部署
+                            </el-button>
+                        </div>
+                    </div>
+                </el-card>
+            </el-col>
+
+            <el-col span="6">
+                <el-card :body-style="{padding:'0px'}" shadow="hover">
+                    <img src="./image/news.svg" alt="sina news logo" class="cu-project-cover">
+                    <div style="border-top: 1px solid #ebebeb; padding: 14px;">
+                        <span class="cu-one-line">新闻网站爬取项目</span><br>
+                        <small class="cu-one-line">https://www.thepaper.cn/</small>
+                        <div class="bottom clearfix">
+                            <div style="flex: 1;"></div>
+                            <el-button round type="primary" class="button" size="mini"
+                                       style="margin-top: 16px; float: right; padding: 5px 8px;">部署
+                            </el-button>
+                        </div>
+                    </div>
+                </el-card>
+            </el-col>
+
+            <el-col span="6">
+                <el-card :body-style="{padding:'0px'}" shadow="hover">
+                    <img src="./image/news_netease.png" alt="sina news logo" class="cu-project-cover">
+                    <div style="border-top: 1px solid #ebebeb; padding: 14px;">
+                        <span class="cu-one-line">网易新闻网站爬取项目</span><br>
+                        <small class="cu-one-line">https://3g.163.com/touch/edu</small>
+                        <div class="bottom clearfix">
+                            <div style="flex: 1;"></div>
+                            <el-button round type="primary" class="button" size="mini"
+                                       style="margin-top: 16px; float: right; padding: 5px 8px;">部署
+                            </el-button>
+                        </div>
+                    </div>
+                </el-card>
+            </el-col>
+        </el-row>
+
+        <el-row :gutter="20" style="display: block;">
+            <el-col span="6">
+                <el-card :body-style="{padding:'0px'}" shadow="hover">
+                    <img src="./image/news_qq.png" alt="sina news logo" class="cu-project-cover">
+                    <div style="border-top: 1px solid #ebebeb; padding: 14px;">
+                        <span class="cu-one-line">腾讯新闻网站爬取项目</span><br>
+                        <small class="cu-one-line">https://xw.qq.com/m/edu</small>
+                        <div class="bottom clearfix">
+                            <div style="flex: 1;"></div>
+                            <el-button round type="primary" class="button" size="mini"
+                                       style="margin-top: 16px; float: right; padding: 5px 8px;">部署
+                            </el-button>
+                        </div>
+                    </div>
+                </el-card>
+            </el-col>
+
+
+            <!--<el-col :span="24">-->
+            <!--<el-card class="box-card">-->
+            <!--<div slot="header" class="clearfix custom-card-header">-->
+            <!--<span style="display: inline-block; padding-top: 8px;">部署项目</span>-->
+            <!--<el-button-->
+            <!--icon="el-icon-refresh"-->
+            <!--type="text"-->
+            <!--style="float:right; color: #409EFF; font-size: 12px; cursor: pointer;"-->
+            <!--v-on:click="getDeployList()">-->
+            <!--刷新-->
+            <!--</el-button>-->
+            <!--</div>-->
+
+            <!--<el-table-->
+            <!--:data="projects"-->
+            <!--style="width: 100%"-->
+            <!--max-height="350">-->
+            <!--<el-table-column-->
+            <!--prop="name"-->
+            <!--label="项目名称">-->
+            <!--</el-table-column>-->
+
+            <!--<el-table-column-->
+            <!--prop="path"-->
+            <!--label="路径">-->
+            <!--</el-table-column>-->
+
+            <!--<el-table-column-->
+            <!--fixed="right"-->
+            <!--label="操作"-->
+            <!--width="100">-->
+            <!--<template slot-scope="scope">-->
+            <!--<el-button v-on:click="deploy(scope.row)" type="text" size="small">部署-->
+            <!--</el-button>-->
+            <!--</template>-->
+            <!--</el-table-column>-->
+            <!--</el-table>-->
+
+
+            <!--</el-card>-->
+            <!--</el-col>-->
         </el-row>
     </d2-container>
 </template>
@@ -198,6 +288,22 @@
     em {
         color: $color-primary;
     }
+
+    .cu-project-cover {
+        display: block;
+        margin: 0 auto;
+        padding: 10px;
+        height: 80px;
+    }
+
+    .cu-one-line {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+
 </style>
 
 <script>
@@ -210,21 +316,30 @@
         methods: {
             // get project list
             getProjectList() {
-                ProjectList({
-                    server: this.selectedServer
-                }).then(res => {
-                    this.projectData = [];
-                    for (const i in res.projects) {
-                        this.projectData.push({
-                            index: i,
-                            projects: res.projects[i],
-                        });
-                    }
-                }).catch(err => {
-                    this.$message({message: err, type: 'error'});
-                }).finally(() => {
-                    this.loading = false;
-                });
+                // ProjectList({
+                //     server: this.selectedServer
+                // }).then(res => {
+                //     this.projectData = [];
+                //     for (const i in res.projects) {
+                //         this.projectData.push({
+                //             index: i,
+                //             projects: res.projects[i],
+                //         });
+                //     }
+                // }).catch(err => {
+                //     this.$message({message: err, type: 'error'});
+                // }).finally(() => {
+                //     this.loading = false;
+                // });
+
+                // prototype todo delete
+                this.projectData.push({
+                    index: 1,
+                    projects: 'project name #1',
+                }, {
+                    index: 2,
+                    projects: 'project name #2'
+                })
             },
 
             // go to '/spider/overview/:project_name'
@@ -241,50 +356,62 @@
 
             // call DelProject API
             doDelProject(name) {
-                return DelProject({
-                    server: this.selectedServer,
-                    project: name
-                });
+                // return DelProject({
+                //     server: this.selectedServer,
+                //     project: name
+                // });
             },
 
             // delete project with confirm info
             delProject(row) {
+                // this.$confirm(`此操作将永久删除该项目: ${row.projects}, 是否继续?`, '提示', {
+                //     confirmButtonText: '删除',
+                //     cancelButtonText: '取消',
+                //     type: 'warning',
+                //
+                //     beforeClose: (action, instance, done) => {
+                //         if (action === 'confirm') {
+                //             instance.confirmButtonLoading = true;
+                //             instance.confirmButtonText = '删除中...';
+                //
+                //             this.doDelProject(row.projects).then(res => {
+                //                 // delete success
+                //                 if (res.status === 'ok') {
+                //                     this.$message({
+                //                         message: `project ${row.projects} deleted`,
+                //                         type: 'success'
+                //                     });
+                //
+                //                     this.projectData.splice(row.index, 1);
+                //                 } else if (res.status === 'error') {
+                //                     // delete failed
+                //                     this.$message({
+                //                         message: `${res.message}`,
+                //                         type: 'error'
+                //                     })
+                //                 }
+                //             }).finally(() => {
+                //                 done();
+                //                 instance.confirmButtonLoading = false;
+                //             })
+                //         } else {
+                //             done();
+                //             instance.confirmButtonLoading = false;
+                //         }
+                //     }
+                // });
+
+                // prototype todo delete
                 this.$confirm(`此操作将永久删除该项目: ${row.projects}, 是否继续?`, '提示', {
                     confirmButtonText: '删除',
                     cancelButtonText: '取消',
-                    type: 'warning',
-
-                    beforeClose: (action, instance, done) => {
-                        if (action === 'confirm') {
-                            instance.confirmButtonLoading = true;
-                            instance.confirmButtonText = '删除中...';
-
-                            this.doDelProject(row.projects).then(res => {
-                                // delete success
-                                if (res.status === 'ok') {
-                                    this.$message({
-                                        message: `project ${row.projects} deleted`,
-                                        type: 'success'
-                                    });
-
-                                    this.projectData.splice(row.index, 1);
-                                } else if (res.status === 'error') {
-                                    // delete failed
-                                    this.$message({
-                                        message: `${res.message}`,
-                                        type: 'error'
-                                    })
-                                }
-                            }).finally(() => {
-                                done();
-                                instance.confirmButtonLoading = false;
-                            })
-                        } else {
-                            done();
-                            instance.confirmButtonLoading = false;
-                        }
-                    }
+                    type: 'warning'
+                }).then(res => {
+                    this.$message({message: '项目已删除', type: 'success'})
+                }).catch(err => {
+                    this.$message('项目未删除')
                 });
+
             },
 
             requestVersionList() {
@@ -293,29 +420,46 @@
                     return;
                 }
 
-                VersionList({
-                    server: this.selectedServer,
-                    project: this.selectedProject
-                }).then(res => {
-                    this.versionData = [];
-                    for (const i in res.versions) {
-                        this.versionData.push({
-                            index: i,
-                            version: res.versions[i]
-                        })
-                    }
+                // VersionList({
+                //     server: this.selectedServer,
+                //     project: this.selectedProject
+                // }).then(res => {
+                //     this.versionData = [];
+                //     for (const i in res.versions) {
+                //         this.versionData.push({
+                //             index: i,
+                //             version: res.versions[i]
+                //         })
+                //     }
+                //
+                //     // remove project from this.projectData if no more versions for the selected project
+                //     // and reset this.selectedProject
+                //     if (this.versionData.length === 0) {
+                //         this.projectData.splice(this.projectData.indexOf(this.selectedProject), 1);
+                //         this.selectedProject = '';
+                //     } else {
+                //         this.versionData.reverse();
+                //     }
+                // }).catch(err => {
+                //     console.error(err);
+                // })
 
-                    // remove project from this.projectData if no more versions for the selected project
-                    // and reset this.selectedProject
-                    if (this.versionData.length === 0) {
-                        this.projectData.splice(this.projectData.indexOf(this.selectedProject), 1);
-                        this.selectedProject = '';
-                    } else {
-                        this.versionData.reverse();
-                    }
-                }).catch(err => {
-                    console.error(err);
-                })
+                // prototype todo delete
+                this.versionData = [];
+                this.versionData.push(
+                    {
+                        index: 1,
+                        version: '23423113'
+                    },
+                    {
+                        index: 2,
+                        version: '23423432'
+                    },
+                    {
+                        index: 3,
+                        version: '13245213'
+                    },
+                )
             },
 
             // get the version list for the selected project
@@ -326,45 +470,56 @@
 
             // delete version with confirm info
             deleteVersion(row) {
+                // this.$confirm(`此操作将永久删除项目: ${this.selectedProject} 的 [${row.version}] 版本, 是否继续?`, '提示', {
+                //     confirmButtonText: '删除',
+                //     cancelButtonText: '取消',
+                //     type: 'warning',
+                //
+                //     beforeClose: (action, instance, done) => {
+                //         if (action === 'confirm') {
+                //             instance.confirmButtonLoading = true;
+                //             instance.confirmButtonText = '删除中...';
+                //
+                //             DelVersion({
+                //                 server: this.selectedServer,
+                //                 project: this.selectedProject,
+                //                 version: row.version
+                //             }).then(res => {
+                //                 // delete success
+                //                 if (res.status === 'ok') {
+                //                     this.$message({
+                //                         message: `version ${row.version} deleted`,
+                //                         type: 'success'
+                //                     });
+                //
+                //                     this.requestVersionList();
+                //                 } else {
+                //                     // delete failed
+                //                     this.$message({
+                //                         message: `version ${row.version} deleted failed, message: ${res.message}`,
+                //                         type: 'error'
+                //                     })
+                //                 }
+                //             }).finally(() => {
+                //                 done();
+                //                 instance.confirmButtonLoading = false;
+                //             })
+                //         } else {
+                //             done();
+                //             instance.confirmButtonLoading = false;
+                //         }
+                //     }
+                // });
+
+                // prototype todo delete
                 this.$confirm(`此操作将永久删除项目: ${this.selectedProject} 的 [${row.version}] 版本, 是否继续?`, '提示', {
                     confirmButtonText: '删除',
                     cancelButtonText: '取消',
-                    type: 'warning',
-
-                    beforeClose: (action, instance, done) => {
-                        if (action === 'confirm') {
-                            instance.confirmButtonLoading = true;
-                            instance.confirmButtonText = '删除中...';
-
-                            DelVersion({
-                                server: this.selectedServer,
-                                project: this.selectedProject,
-                                version: row.version
-                            }).then(res => {
-                                // delete success
-                                if (res.status === 'ok') {
-                                    this.$message({
-                                        message: `version ${row.version} deleted`,
-                                        type: 'success'
-                                    });
-
-                                    this.requestVersionList();
-                                } else {
-                                    // delete failed
-                                    this.$message({
-                                        message: `version ${row.version} deleted failed, message: ${res.message}`,
-                                        type: 'error'
-                                    })
-                                }
-                            }).finally(() => {
-                                done();
-                                instance.confirmButtonLoading = false;
-                            })
-                        } else {
-                            done();
-                            instance.confirmButtonLoading = false;
-                        }
-                    }
+                    type: 'warning'
+                }).then(res => {
+                    this.$message({message: '版本已被删除', type: 'success'});
+                }).catch(err => {
+                    this.$message('版本未删除')
                 });
             },
 
@@ -374,59 +529,101 @@
             },
 
             getDeployList() {
-                GetProjectPath(this.rootPath).then(res => {
-                    if (res.msg === 'success') {
-                        this.projects = [];
-                        for (let pro in res.paths) {
-                            this.projects.push({
-                                name: pro,
-                                path: res.paths[pro]
-                            })
-                        }
-                    }
-                }).catch(err => {
-                    this.$message({message: err, type: 'error'});
-                });
+                // GetProjectPath(this.rootPath).then(res => {
+                //     if (res.msg === 'success') {
+                //         this.projects = [];
+                //         for (let pro in res.paths) {
+                //             this.projects.push({
+                //                 name: pro,
+                //                 path: res.paths[pro]
+                //             })
+                //         }
+                //     }
+                // }).catch(err => {
+                //     this.$message({message: err, type: 'error'});
+                // });
+
+                // prototype todo delete
+                this.projects = [];
+                this.projects.push(
+                    {
+                        name: 'un-deployed project name #1',
+                        path: '/eagle/scrapy-project/project-name#1'
+                    },
+                    {
+                        name: 'un-deployed project name #2',
+                        path: '/eagle/scrapy-project/project-name#2'
+                    },
+                    {
+                        name: 'un-deployed project name #3',
+                        path: '/eagle/scrapy-project/project-name#3'
+                    },
+                )
             },
 
             deploy(row) {
-                if (!this.selectedServer) {
-                    this.$message({message: '服务器未选定!', type: 'error'});
-                    return;
-                }
+                // if (!this.selectedServer) {
+                //     this.$message({message: '服务器未选定!', type: 'error'});
+                //     return;
+                // }
+                //
+                // this.$confirm(`将项目${row.name}部署至${this.selectedServer}, 是否继续?`, '提示', {
+                //     confirmButtonText: '部署',
+                //     cancelButtonText: '取消',
+                //     type: 'warning',
+                //
+                //     beforeClose: (action, instance, done) => {
+                //         if (action === 'confirm') {
+                //             instance.confirmButtonLoading = true;
+                //             instance.confirmButtonText = '部署中...';
+                //
+                //             DoDeploy({
+                //                 path: row.path,
+                //                 project: row.name,
+                //                 target: this.selectedServer
+                //             }).then(res => {
+                //                 if (res.msg === 'success' && res.deploy_result.status === 'ok') {
+                //                     this.$message({message: '部署成功', type: 'success'});
+                //                     this.getProjectList();
+                //                 } else {
+                //                     this.$message({message: res.msg, type: 'error'})
+                //                 }
+                //             }).catch(err => {
+                //                 this.$message({message: err, type: 'error'});
+                //             }).finally(() => {
+                //                 done();
+                //                 instance.confirmButtonLoading = false;
+                //             })
+                //         } else {
+                //             done();
+                //             instance.confirmButtonLoading = false;
+                //         }
+                //     }
+                // });
+
+                // prototype todo delete
                 this.$confirm(`将项目${row.name}部署至${this.selectedServer}, 是否继续?`, '提示', {
                     confirmButtonText: '部署',
                     cancelButtonText: '取消',
                     type: 'warning',
-
                     beforeClose: (action, instance, done) => {
                         if (action === 'confirm') {
                             instance.confirmButtonLoading = true;
                             instance.confirmButtonText = '部署中...';
 
-                            DoDeploy({
-                                path: row.path,
-                                project: row.name,
-                                target: this.selectedServer
-                            }).then(res => {
-                                if (res.msg === 'success' && res.deploy_result.status === 'ok') {
-                                    this.$message({message: '部署成功', type: 'success'});
-                                    this.getProjectList();
-                                } else {
-                                    this.$message({message: res.msg, type: 'error'})
-                                }
-                            }).catch(err => {
-                                this.$message({message: err, type: 'error'});
-                            }).finally(() => {
+                            setTimeout(() => {
+                                this.$message({message: '部署成功', type: 'success'});
                                 done();
                                 instance.confirmButtonLoading = false;
-                            })
+                            }, 2000)
                         } else {
+                            this.$message({message: '取消部署', type: 'info'});
                             done();
                             instance.confirmButtonLoading = false;
                         }
                     }
-                })
+                });
+
             }
         },
 

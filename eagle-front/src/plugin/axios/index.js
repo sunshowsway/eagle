@@ -45,7 +45,7 @@ const service = axios.create({
 service.interceptors.request.use(
     config => {
         if (config.method === 'post') {
-            config.data = qs.stringify(config.data);
+            // config.data = qs.stringify(config.data);
         }
 
         // 在请求发送之前做一些处理

@@ -1,9 +1,11 @@
 import spider from './modules/spider';
 import server from './modules/server';
+import database from './modules/database';
+import doc from './modules/doc'
 
 import layoutHeaderAside from '@/layout/header-aside'
 
-const meta = {requiresAuth: false};
+const meta = {requiresAuth: true};
 
 /**
  * 在主框架内显示
@@ -24,6 +26,8 @@ const frameIn = [
     },
     spider,
     server,
+    database,
+    doc,
     {
         path: '/logging',
         name: 'logging',
@@ -48,6 +52,45 @@ const frameIn = [
                 name: 'projects',
                 meta: {meta, title: '项目'},
                 component: () => import('@/pages/projects')
+            }
+        ]
+    },
+    {
+        path: '/settings',
+        name: 'settings',
+        component: layoutHeaderAside,
+        children: [
+            {
+                path: '/settings',
+                name: 'settings',
+                meta: {meta, title: '配置'},
+                component: () => import('@/pages/settings')
+            }
+        ]
+    },
+    {
+        path: '/collection_directory',
+        name: 'collection_directory',
+        component: layoutHeaderAside,
+        children: [
+            {
+                path: '/collection_directory',
+                name: 'collection_directory',
+                meta: {meta, title: '采集目录'},
+                component: () => import('@/pages/collection_directory')
+            }
+        ]
+    },
+    {
+        path: '/ad_manager',
+        name: 'ad_manager',
+        component: layoutHeaderAside,
+        children: [
+            {
+                path: '/ad_manager',
+                name: 'ad_manager',
+                meta: {meta, title: '广告过滤'},
+                component: () => import('@/pages/ad_manager')
             }
         ]
     },
@@ -95,4 +138,4 @@ export default [
     ...frameIn,
     ...frameOut,
     ...errorPage
-];
+]
