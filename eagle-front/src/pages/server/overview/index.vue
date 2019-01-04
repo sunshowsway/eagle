@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <template>
     <d2-container>
         <el-row :gutter="20">
@@ -72,7 +73,7 @@
                                 </table>
                             </el-col>
 
-                            <el-col :span="6" :xl="6" :lg="8" :sm="12" :xs="24">
+                            <el-col :span="6" :xl="6" :lg="6" :sm="12" :xs="24">
                                 <div class="cpu-usage-holder">
                                     <span>CPU Usage</span>
                                     <div id="cpu_usage" ref="cpu_usage" style="width: 200px; height: 100px;"></div>
@@ -102,7 +103,7 @@
                             </table>
                             </el-col>
 
-                            <el-col :span="6" :xl="6" :lg="4" :sm="12" :xs="24">
+                            <el-col :span="6" :xl="6" :lg="6" :sm="12" :xs="24">
                                 <table class="service-status">
                                 <tr>
                                     <td style="display: flex; flex: 1;">proxy_pool 状态:</td>
@@ -150,8 +151,8 @@
                         </div>
 
                         <el-row :gutter="20" class="deployed-proj">
-                            <el-col :span="6" :xl="6" :lg="6" :sm="12" :xs="12">
-                                <el-card :body-style="{padding:'0px'}" shadow="never">
+                            <el-col :span="6" :xl="6" :lg="6" :sm="12" :xs="24">
+                                <el-card :body-style="{padding:'0px'}" shadow="hover">
                                     <div style="position: relative;">
                                         <img src="./image/news_sina.svg" alt="sina news logo" class="cu-project-cover">
                                         <el-button circle size="mini" icon="el-icon-caret-right"
@@ -170,174 +171,93 @@
                                 </el-card>
                             </el-col>
 
-                            <el-col :span="6" :xl="6" :lg="6" :sm="12" :xs="12">
-                                <el-card :body-style="{padding:'0px'}" shadow="hover">
-                                    <div style="position: relative;">
-                                        <img src="./image/douban.svg" alt="sina news logo" class="cu-project-cover">
-                                        <el-button circle size="mini" icon="el-icon-caret-right"
-                                                   v-on:click="deploy('douban')"
-                                                   style="color: #0694d6; font-size: 16px; padding: 4px; position: absolute; bottom: 10px; right: 10px;">
-                                        </el-button>
-                                    </div>
-                                    <div style="border-top: 1px solid #ebebeb; padding: 14px; border-bottom: 1px solid #ebebeb;">
-                                        <span class="cu-one-line">豆瓣小组爬取项目(https://www.douban.com/group/search?cat=1019&q=教育)</span>
-                                        <small class="cu-one-line">运行频次: 20m</small>
-                                    </div>
-                                    <div style="padding: 0 14px; float: right;">
-                                        <el-button type="text" size="mini">配置</el-button>
-                                        <el-button type="text" size="mini">查看项目</el-button>
-                                    </div>
-                                </el-card>
-                            </el-col>
+                            <!--<el-col :span="6" :xl="6" :lg="6" :sm="12" :xs="12">-->
+                                <!--<el-card :body-style="{padding:'0px'}" shadow="hover">-->
+                                    <!--<div style="position: relative;">-->
+                                        <!--<img src="./image/douban.svg" alt="sina news logo" class="cu-project-cover">-->
+                                        <!--<el-button circle size="mini" icon="el-icon-caret-right"-->
+                                                   <!--v-on:click="deploy('douban')"-->
+                                                   <!--disabled-->
+                                                   <!--style="color: #0694d6; font-size: 16px; padding: 4px; position: absolute; bottom: 10px; right: 10px;">-->
+                                        <!--</el-button>-->
+                                    <!--</div>-->
+                                    <!--<div style="border-top: 1px solid #ebebeb; padding: 14px; border-bottom: 1px solid #ebebeb;">-->
+                                        <!--<span class="cu-one-line">豆瓣小组爬取项目(https://www.douban.com/group/search?cat=1019&q=教育)</span>-->
+                                        <!--<small class="cu-one-line">运行频次: 20m</small>-->
+                                    <!--</div>-->
+                                    <!--<div style="padding: 0 14px; float: right;">-->
+                                        <!--<el-button type="text" size="mini">配置</el-button>-->
+                                        <!--<el-button type="text" size="mini">查看项目</el-button>-->
+                                    <!--</div>-->
+                                <!--</el-card>-->
+                            <!--</el-col>-->
 
-                            <el-col :span="6" :xl="6" :lg="6" :sm="12" :xs="12">
-                                <el-card :body-style="{padding:'0px'}" shadow="hover">
-                                    <div style="position: relative;">
-                                        <img src="./image/news.svg" alt="news logo" class="cu-project-cover">
-                                        <el-button circle size="mini" icon="el-icon-caret-right"
-                                                   v-on:click="deploy('news')"
-                                                   style="color: #0694d6; font-size: 16px; padding: 4px; position: absolute; bottom: 10px; right: 10px;">
-                                        </el-button>
-                                    </div>
-                                    <div style="border-top: 1px solid #ebebeb; padding: 14px; border-bottom: 1px solid #ebebeb;">
-                                        <span class="cu-one-line">新闻网站爬取项目(https://www.thepaper.cn/)</span>
-                                        <small class="cu-one-line">运行频次: 3h</small>
-                                    </div>
-                                    <div style="padding: 0 14px; float: right;">
-                                        <el-button type="text" size="mini">配置</el-button>
-                                        <el-button type="text" size="mini">查看项目</el-button>
-                                    </div>
-                                </el-card>
-                            </el-col>
+                            <!--<el-col :span="6" :xl="6" :lg="6" :sm="12" :xs="12">-->
+                                <!--<el-card :body-style="{padding:'0px'}" shadow="hover">-->
+                                    <!--<div style="position: relative;">-->
+                                        <!--<img src="./image/news.svg" alt="news logo" class="cu-project-cover">-->
+                                        <!--<el-button circle size="mini" icon="el-icon-caret-right"-->
+                                                   <!--v-on:click="deploy('news')"-->
+                                                   <!--disabled-->
+                                                   <!--style="color: #0694d6; font-size: 16px; padding: 4px; position: absolute; bottom: 10px; right: 10px;">-->
+                                        <!--</el-button>-->
+                                    <!--</div>-->
+                                    <!--<div style="border-top: 1px solid #ebebeb; padding: 14px; border-bottom: 1px solid #ebebeb;">-->
+                                        <!--<span class="cu-one-line">新闻网站爬取项目(https://www.thepaper.cn/)</span>-->
+                                        <!--<small class="cu-one-line">运行频次: 3h</small>-->
+                                    <!--</div>-->
+                                    <!--<div style="padding: 0 14px; float: right;">-->
+                                        <!--<el-button type="text" size="mini">配置</el-button>-->
+                                        <!--<el-button type="text" size="mini">查看项目</el-button>-->
+                                    <!--</div>-->
+                                <!--</el-card>-->
+                            <!--</el-col>-->
 
-                            <el-col :span="6" :xl="6" :lg="6" :sm="12" :xs="12">
-                                <el-card :body-style="{padding:'0px'}" shadow="hover">
-                                    <div style="position: relative;">
-                                        <img src="./image/news_netease.png" alt="net news logo" class="cu-project-cover">
-                                        <el-button circle size="mini" icon="el-icon-caret-right"
-                                                   v-on:click="deploy('netease')"
-                                                   style="color: #0694d6; font-size: 16px; padding: 4px; position: absolute; bottom: 10px; right: 10px;">
-                                        </el-button>
-                                    </div>
-                                    <div style="border-top: 1px solid #ebebeb; padding: 14px; border-bottom: 1px solid #ebebeb;">
-                                        <span class="cu-one-line">网易新闻网站爬取项目(https://3g.163.com/touch/edu)</span>
-                                        <small class="cu-one-line">运行频次: 3h</small>
-                                    </div>
-                                    <div style="padding: 0 14px; float: right;">
-                                        <el-button type="text" size="mini">配置</el-button>
-                                        <el-button type="text" size="mini">查看项目</el-button>
-                                    </div>
-                                </el-card>
-                            </el-col>
+                            <!--<el-col :span="6" :xl="6" :lg="6" :sm="12" :xs="12">-->
+                                <!--<el-card :body-style="{padding:'0px'}" shadow="hover">-->
+                                    <!--<div style="position: relative;">-->
+                                        <!--<img src="./image/news_netease.png" alt="net news logo" class="cu-project-cover">-->
+                                        <!--<el-button circle size="mini" icon="el-icon-caret-right"-->
+                                                   <!--v-on:click="deploy('netease')"-->
+                                                   <!--disabled-->
+                                                   <!--style="color: #0694d6; font-size: 16px; padding: 4px; position: absolute; bottom: 10px; right: 10px;">-->
+                                        <!--</el-button>-->
+                                    <!--</div>-->
+                                    <!--<div style="border-top: 1px solid #ebebeb; padding: 14px; border-bottom: 1px solid #ebebeb;">-->
+                                        <!--<span class="cu-one-line">网易新闻网站爬取项目(https://3g.163.com/touch/edu)</span>-->
+                                        <!--<small class="cu-one-line">运行频次: 3h</small>-->
+                                    <!--</div>-->
+                                    <!--<div style="padding: 0 14px; float: right;">-->
+                                        <!--<el-button type="text" size="mini">配置</el-button>-->
+                                        <!--<el-button type="text" size="mini">查看项目</el-button>-->
+                                    <!--</div>-->
+                                <!--</el-card>-->
+                            <!--</el-col>-->
 
-                            <el-col :span="6" :xl="6" :lg="6" :sm="12" :xs="12">
-                                <el-card :body-style="{padding:'0px'}" shadow="hover">
-                                    <div style="position: relative;">
-                                        <img src="./image/news_qq.png" alt="qq news logo" class="cu-project-cover">
-                                        <el-button circle size="mini" icon="el-icon-caret-right"
-                                                   v-on:click="deploy('qq')"
-                                                   style="color: #0694d6; font-size: 16px; padding: 4px; position: absolute; bottom: 10px; right: 10px;">
-                                        </el-button>
-                                    </div>
-                                    <div style="border-top: 1px solid #ebebeb; padding: 14px; border-bottom: 1px solid #ebebeb;">
-                                        <span class="cu-one-line">腾讯新闻网站爬取项目(https://xw.qq.com/m/edu)</span>
-                                        <small class="cu-one-line">运行频次: 3h</small>
-                                    </div>
-                                    <div style="padding: 0 14px; float: right;">
-                                        <el-button type="text" size="mini">配置</el-button>
-                                        <el-button type="text" size="mini">查看项目</el-button>
-                                    </div>
-                                </el-card>
-                            </el-col>
+                            <!--<el-col :span="6" :xl="6" :lg="6" :sm="12" :xs="12">-->
+                                <!--<el-card :body-style="{padding:'0px'}" shadow="hover">-->
+                                    <!--<div style="position: relative;">-->
+                                        <!--<img src="./image/news_qq.png" alt="qq news logo" class="cu-project-cover">-->
+                                        <!--<el-button circle size="mini" icon="el-icon-caret-right"-->
+                                                   <!--v-on:click="deploy('qq')"-->
+                                                   <!--disabled-->
+                                                   <!--style="color: #0694d6; font-size: 16px; padding: 4px; position: absolute; bottom: 10px; right: 10px;">-->
+                                        <!--</el-button>-->
+                                    <!--</div>-->
+                                    <!--<div style="border-top: 1px solid #ebebeb; padding: 14px; border-bottom: 1px solid #ebebeb;">-->
+                                        <!--<span class="cu-one-line">腾讯新闻网站爬取项目(https://xw.qq.com/m/edu)</span>-->
+                                        <!--<small class="cu-one-line">运行频次: 3h</small>-->
+                                    <!--</div>-->
+                                    <!--<div style="padding: 0 14px; float: right;">-->
+                                        <!--<el-button type="text" size="mini">配置</el-button>-->
+                                        <!--<el-button type="text" size="mini">查看项目</el-button>-->
+                                    <!--</div>-->
+                                <!--</el-card>-->
+                            <!--</el-col>-->
                         </el-row>
                     </el-card>
                 </div>
             </el-col>
-
-            <!--<el-col :span="24">-->
-                <!--<div class="grid-content bg-purple-light">-->
-                    <!--<el-card class="box-card">-->
-                        <!--<div slot="header" class="clearfix">-->
-                            <!--<span>服务器列表</span><br>-->
-                            <!--<span style="font-size: 12px;"><em>当前选定的服务器: {{selectedServer?selectedServer:'未指定'}}</em></span>-->
-                            <!--<el-button style="float: right;"-->
-                                       <!--icon="el-icon-plus"-->
-                                       <!--round size="mini"-->
-                                       <!--v-on:click="openAddServer()"-->
-                                       <!--type="primary">-->
-                                <!--添加服务器-->
-                            <!--</el-button>-->
-                        <!--</div>-->
-
-                        <!--<el-table-->
-                                <!--:data="serverList"-->
-                                <!--:loading="loading"-->
-                                <!--style="width: 100%"-->
-                                <!--height="300">-->
-
-                            <!--<el-table-column-->
-                                    <!--prop="id"-->
-                                    <!--width="50"-->
-                                    <!--label="#">-->
-                            <!--</el-table-column>-->
-
-                            <!--<el-table-column-->
-                                    <!--prop="name"-->
-                                    <!--label="名称">-->
-                            <!--</el-table-column>-->
-
-                            <!--<el-table-column-->
-                                    <!--prop="ip"-->
-                                    <!--label="IP地址">-->
-                            <!--</el-table-column>-->
-
-                            <!--<el-table-column-->
-                                    <!--prop="scrapyd_port"-->
-                                    <!--label="端口">-->
-                            <!--</el-table-column>-->
-
-                            <!--<el-table-column prop="username" label="登录名">-->
-                            <!--</el-table-column>-->
-
-                            <!--<el-table-column prop="password" label="密码">-->
-                            <!--</el-table-column>-->
-
-                            <!--<el-table-column-->
-                                    <!--fixed="right"-->
-                                    <!--label="操作"-->
-                                    <!--width="200">-->
-                                <!--<template slot-scope="scope">-->
-                                    <!--&lt;!&ndash;<el-button v-on:click="ssh(scope.row)"&ndash;&gt;-->
-                                    <!--&lt;!&ndash;type="text"&ndash;&gt;-->
-                                    <!--&lt;!&ndash;size="small">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;SSH&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</el-button>&ndash;&gt;-->
-
-                                    <!--<el-button v-on:click="delServer(scope.$index, scope.row)"-->
-                                               <!--type="text"-->
-                                               <!--icon="el-icon-delete"-->
-                                               <!--size="small">-->
-                                        <!--删除-->
-                                    <!--</el-button>-->
-                                    <!--<el-button-->
-                                            <!--v-on:click="onEditServer(scope.row)"-->
-                                            <!--type="text"-->
-                                            <!--icon="el-icon-edit"-->
-                                            <!--size="small">-->
-                                        <!--编辑-->
-                                    <!--</el-button>-->
-                                    <!--<el-button-->
-                                            <!--v-on:click="selectServer(scope.row)"-->
-                                            <!--type="text"-->
-                                            <!--size="small">-->
-                                        <!--选定-->
-                                    <!--</el-button>-->
-                                <!--</template>-->
-                            <!--</el-table-column>-->
-                        <!--</el-table>-->
-                    <!--</el-card>-->
-                <!--</div>-->
-            <!--</el-col>-->
         </el-row>
 
         <el-dialog
@@ -495,7 +415,7 @@
 
                 memoryUsage.setOption({
                     grid: {
-                        left: 15,
+                        left: 0,
                         right: 15,
                     },
                     xAxis: {
@@ -529,7 +449,7 @@
 
                 storageUsage.setOption({
                     grid: {
-                        left: 15,
+                        left: 0,
                         right: 15
                     },
                     xAxis: {
@@ -990,7 +910,6 @@
         span {
             position: relative;
             display: inline-block;
-            margin-left: 12px;
             padding-bottom: 4px;
         }
     }

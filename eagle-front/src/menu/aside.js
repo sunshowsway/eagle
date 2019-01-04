@@ -1,14 +1,8 @@
 // 菜单 侧边栏
 export default [
     // {path: '/index', title: '首页', icon: 'home'},
-    {
-        title: '服务器管理',
-        icon: 'server',
-        children: [
-            {path: '/server/overview', icon: 'info-circle', title: '服务器列表'},
-            {path: '/server/status', icon: 'globe', title: '服务器状态'},
-        ]
-    },
+
+    {path: '/server/overview', icon: 'server', title: '服务器管理'},
     {path: '/projects', icon: 'rocket', title: '项目'},
     {
         title: '爬虫管理',

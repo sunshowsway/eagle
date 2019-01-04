@@ -15,11 +15,11 @@ export default {
             component: () => import('@/pages/server/overview'),
             meta: {meta, title: '服务器列表'}
         },
-        {
-            path: 'status',
-            name: `${pre}status`,
-            component: () => import('@/pages/server/status'),
-            meta: {meta, title: '服务器状态'}
-        }
+        // {
+        //     path: 'status',
+        //     name: `${pre}status`,
+        //     component: () => import('@/pages/server/status'),
+        //     meta: {meta, title: '服务器状态'}
+        // }
     ])('server-')
 }
