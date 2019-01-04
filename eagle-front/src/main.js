@@ -34,6 +34,8 @@ Vue.use(D2Crud);
 Vue.use(VCharts);
 Vue.use(echarts);
 
+Vue.prototype.$echarts = echarts;
+
 // 非核心插件
 // Vue.use(VueHighlightJS);
 
