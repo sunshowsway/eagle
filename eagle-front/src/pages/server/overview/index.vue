@@ -12,7 +12,7 @@
                                style="margin-right: 12px; float: right;"></el-button>
 
                     <el-card class="box-card cu-server-list" style="margin-top: 4px;" shadow="never">
-                        <ul>
+                        <ul v-if="serverList.length > 0">
                             <li v-for="server in serverList">
                                 <span class="el-icon-success"
                                       style="color:#67C23A; float: right; position: relative; top: 11px;"></span>
@@ -20,6 +20,14 @@
                                 <span>{{server.ip}}</span>
                             </li>
                         </ul>
+                        <div v-else style="text-align: center">
+                            <img src="./image/opened-white-box.svg"
+                                 alt="empty" style="width: 36px; padding: 12px 24px 0 24px;">
+                            <p style="margin-top: 0px; margin-bottom: 17px; font-size: 12px;">没有服务器，
+                                <a v-on:click="openAddServer()" style="color: #0694d6; cursor: pointer;">点击添加</a>
+                            </p>
+                        </div>
+
                     </el-card>
                 </div>
             </el-col>
@@ -75,7 +83,7 @@
 
                             <el-col :span="6" :xl="6" :lg="6" :sm="12" :xs="24">
                                 <div class="cpu-usage-holder">
-                                    <span>CPU Usage</span>
+                                    <span>CPU Usage:↓8% ↑46% →12%</span>
                                     <div id="cpu_usage" ref="cpu_usage" style="width: 200px; height: 100px;"></div>
                                 </div>
                             </el-col>
@@ -916,7 +924,7 @@
 
     .deployed-proj {
         .el-card {
-            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         .cu-project-cover {
